@@ -7,6 +7,8 @@ More exactly, this is a Matlab update of the original code made in Visul Basic 6
 
 Code free to use, please cite the author according to the license !
 
+The code is based on an finite difference approximation of the temperature equation solved on arbitrary domains. It uses a sparse direct solver and can run on moderately powerfull computer. The cellular automaton algorithm is a pure fabrication of this study and has no anteriority. Funfact: this study was attacked for plagiarism without any success and the strikers went crying as soon as I took out my lab notebook and the code principle was copied and patented by a noticeable number of assholes.
+
 # Step 1: arbitrary starting shape
 We start with an arbitrary cooling shape with gradients at the interface between cooling material (dark) and heating surface (white). The heat can flow only through a localized heat sink (blue).
 ![Step1](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP1.png)
@@ -20,7 +22,7 @@ The shape ceases to evolve once thermal gradients are equalized around conductiv
 ![Step3](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP3.png)
 
 # Code output during calculation
-Science must be fancy so the code outputs cool figures while converging.
+Science must be fancy so the code outputs cool figures while converging. As the problem is mainly symmetrical, only half geometries are considered for calculations.
 ![output](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/Code_Output.png)
 
 # Exemple of shape at convergence with a 800x800 square elements topology, filling ratio=30% and kp/k0=25
