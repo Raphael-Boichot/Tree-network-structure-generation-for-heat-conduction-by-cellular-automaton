@@ -7,16 +7,20 @@ More exactly, this is a Matlab update of the original code made in Visul Basic 6
 
 Code free to use, please cite the author according to the license !
 
-# Step 1: An arbitrary cooling shape with gradients at the interface between cooling material (dark) and heating surface (white)
+# Step 1: arbitrary starting shape
+We start with an arbitrary cooling shape with gradients at the interface between cooling material (dark) and heating surface (white). The heat can flow only through a localized heat sink (blue).
 ![Step1](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP1.png)
 
-# Step 2: Evolutionnary algorithm (Cellular Automaton) to evolve the shape by attracting conductive matter along temperature gradients
+# Step 2: Cellular automaton driven by gradients
+An evolutionnary algorithm (Cellular Automaton) is used to evolve the shape by attracting conductive matter along temperature gradients. It mimicks the chemotaxis of roots in a nutrient medium that follows concentration gradients. Conductive matter evolves like a growing organism trying to maximize food extraction (heat) in a closed space (heating pad). 
 ![Step2](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP2.png)
 
-# Step 3: The shape ceases to evolve once thermal gradients are equalized around itself
+# Step 3: convergence
+The shape ceases to evolve once thermal gradients are equalized around conductive matter. The solution is not optimal as no objective function is minimized but the topology evolved is an efficient local minima and most of all: it converges very fast ! It can outperform most of the other methods based on pure mathematics to attack the problem. It is however an average performer compared to other evolutionnaty algorithms (both gradient based or global).
 ![Step3](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP3.png)
 
 # Code output during calculation
+Science must be fancy so the code outputs cool figures while converging.
 ![output](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/Code_Output.png)
 
 # Exemple of shape at convergence with a 800x800 square elements topology, filling ratio=30% and kp/k0=25
