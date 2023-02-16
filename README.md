@@ -22,7 +22,7 @@ The shape ceases to evolve once thermal gradients are equalized around conductiv
 ![Step3](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP3.png)
 
 # Code output during calculation
-Science must be fancy so the code outputs cool figures while converging. As the problem is mainly symmetrical, only half geometries are considered for calculations.
+Science must be fancy so the code outputs cool figures while converging. As the problem is mainly symmetrical, only half geometries are considered for calculations. Everything is in French.
 ![output](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/Code_Output.png)
 
 # Exemple of shape at convergence with a 800x800 square elements topology, filling ratio=30% and kp/k0=25
