@@ -7,7 +7,7 @@ More exactly, this is a Matlab update of the original code made in Visul Basic 6
 
 Code free of use, please cite the author according to license !
 
-# Step 1: An arbitrary cooling shape with gradients at the interface between colling material and heating surface
+# Step 1: An arbitrary cooling shape with gradients at the interface between cooling material (dark) and heating surface (white)
 ![Step1](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP1.png)
 
 # Step 2: Evolutionnary algorithm (Cellular Automaton) to evolve the shape by attracting conductive matter along temperature gradients
