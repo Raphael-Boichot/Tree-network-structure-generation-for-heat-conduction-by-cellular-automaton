@@ -7,14 +7,14 @@ More exactly, this is a Matlab update of the original code made in Visul Basic 6
 
 Code free of use, please cite the author according to license !
 
-#Step 1: An arbitrary cooling shape with gradients at the interface between colling material and heating surface
-![Step1]()
+# Step 1: An arbitrary cooling shape with gradients at the interface between colling material and heating surface
+![Step1](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP1.png)
 
-#Step 2: Evolutionnary algorithm (Cellular Automaton) to evolve the shape by attracting conductive matter along temperature gradients
-![Step2]()
+# Step 2: Evolutionnary algorithm (Cellular Automaton) to evolve the shape by attracting conductive matter along temperature gradients
+![Step2](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP2.png)
 
-#Step 3: The shape ceases to evolve once thermal gradients are equalized around itself
-![Step3]()
+# Step 3: The shape ceases to evolve once thermal gradients are equalized around itself
+![Step3](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP3.png)
 
-#Example of shape at convergence with a 800x800 square elements topology
+# Example of shape at convergence with a 800x800 square elements topology
 ![convergence]()
