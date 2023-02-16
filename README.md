@@ -16,5 +16,8 @@ Code free to use, please cite the author according to the license !
 # Step 3: The shape ceases to evolve once thermal gradients are equalized around itself
 ![Step3](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP3.png)
 
-# Example of shape at convergence with a 800x800 square elements topology, filling ratio=30% and kp/k0=25
+# Code output during calculation
+![output]()
+
+# Exemple of shape at convergence with a 800x800 square elements topology, filling ratio=30% and kp/k0=25
 ![convergence]()
