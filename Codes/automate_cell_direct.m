@@ -104,7 +104,7 @@ temp=(temp-temp_min)/(temp_max-temp_min);
 % obj= (index-1)/20;  
 % note = gradients*(1-obj)+temp*(obj);
 note=gradients;
-[condi_limites] = Cellular_automaton(condi_limites,note, cond_haute,cond_basse,nombre_pixels_conducteurs,taux_variac,nombre_images,m);
+[condi_limites] = cellular_automaton(condi_limites,note, cond_haute,cond_basse,nombre_pixels_conducteurs,taux_variac,nombre_images,m);
 [somme_entropie, entropie, border_variance,variance, moyenne_temp,t_max,temp,grad, variance_grad]=finite_temp_direct_sparse(cond_haute,cond_basse,temp_puits,pas_x,p_vol,condi_limites);
 %****créé une image de sortie compatible avec l'image d'entrée*************
 for k = 1:1:hauteur;
@@ -152,7 +152,7 @@ imwrite([miroir2,miroir],nom_sortie);
 figure(1)
 subplot(2,4,1:2);
 plot(t_max_sortie,'.r');
-title('Résidus=f(itération)');
+title('Max temperature');
 
 subplot(2,4,3:4);
 imagesc([miroir2,miroir]);

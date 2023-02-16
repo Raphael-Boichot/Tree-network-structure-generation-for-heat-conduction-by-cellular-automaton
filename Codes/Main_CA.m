@@ -3,7 +3,7 @@
 clear;
 clc;
 
-kp=[10];%kp/ko ratio
+kp=[25];%kp/ko ratio
 phi=[0.3];%filling ratio
 
 [a]=automate_cell_direct(kp,phi,'400x800.bmp');
