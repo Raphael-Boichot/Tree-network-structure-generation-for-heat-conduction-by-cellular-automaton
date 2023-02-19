@@ -7,7 +7,7 @@ More exactly, this is a Matlab update of the original code made in Visul Basic 6
 
 **Code free to use, please cite the author according to the license !**
 
-The code is based on an finite difference approximation of the temperature equation solved on arbitrary domains. It uses a sparse direct solver and can converges on moderately powerfull computer within an hour. The cellular automaton algorithm part by itself is a pure fabrication of this study and has no anteriority. Funfacts: this study was attacked for plagiarism without any success and the strikers went crying as soon as I took out my lab notebook. The code principle was copied (without citing me) and patented (citing me !) by a noticeable number of assholes publishing in countries were deontology seems to be a big joke.
+The code is based on an finite difference approximation of the temperature equation solved on arbitrary domains. It uses a sparse direct solver and can converges on moderately powerfull computer within an hour. The cellular automaton algorithm part by itself is a pure fabrication of this study and has no anteriority. 
 
 # Step 1: arbitrary starting shape
 We start with an arbitrary cooling shape with gradients at the interface between cooling material (dark) and heating surface (white). The heat can flow only through a localized heat sink (blue).
@@ -28,6 +28,8 @@ Science must be fancy so the code outputs cool figures while converging. As the 
 # Exemple of shape at convergence with a 800x800 square elements topology, filling ratio=30% and kp/k0=20
 ![convergence](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/Converged_shape.png)
 
-#Epilogue
+# Epilogue and funfacts
 
-This code and some of my following papers have more or less killed the [constructal theory](https://en.wikipedia.org/wiki/Adrian_Bejan#Constructal_law). As killing bullshit theories is my favorite activity, I consider the job as more or less done on this point.
+This code and some of my following papers have more or less killed the [constructal theory](https://en.wikipedia.org/wiki/Adrian_Bejan#Constructal_law). As killing bullshit theories is my favorite activity, I consider the job as more or less done on this point. The author of the now forgotten constructal theory first tried to prevent my papers to be published and then tried to consider my results as own part of its theory. This particular algorithm was also attacked for plagiarism without any success and the strikers went crying as soon as I took out my lab notebook with proof of anteriority. Finally, the code principle was copied (without citing me) and patented (citing me !) by a noticeable number of assholes publishing in countries were deontology seems to be a big joke. 
+
+I had imagined a more peaceful beginning of scientifica career...
