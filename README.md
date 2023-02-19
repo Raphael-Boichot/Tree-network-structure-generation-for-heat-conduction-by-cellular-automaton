@@ -27,3 +27,7 @@ Science must be fancy so the code outputs cool figures while converging. As the 
 
 # Exemple of shape at convergence with a 800x800 square elements topology, filling ratio=30% and kp/k0=20
 ![convergence](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/Converged_shape.png)
+
+#Epilogue
+
+This code and some of my following papers have more or less killed the [constructal theory](https://en.wikipedia.org/wiki/Adrian_Bejan#Constructal_law). As killing bullshit theories is my favorite activity, I consider the job as more or less done on this point.
