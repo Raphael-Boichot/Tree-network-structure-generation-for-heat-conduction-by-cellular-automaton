@@ -9,26 +9,26 @@ More exactly, this is a Matlab port of the original code made in Visual Basic fo
 
 The code is based on an finite difference approximation of the temperature equation solved on arbitrary domains. It uses a sparse direct solver and can converges on moderately powerfull computer within an hour. The cellular automaton algorithm part by itself is a pure fabrication of this study and has no anteriority. 
 
-# Step 1: arbitrary starting shape
+## Step 1: arbitrary starting shape
 We start with an arbitrary cooling shape with gradients at the interface between cooling material (dark) and heating surface (white). The heat can flow only through a localized heat sink (blue).
 ![Step1](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP1.png)
 
-# Step 2: Cellular automaton driven by gradients
+## Step 2: Cellular automaton driven by gradients
 An evolutionnary algorithm (Cellular Automaton) is used to evolve the shape by attracting conductive matter along temperature gradients. It mimicks the chemotaxis of roots in a nutrient medium that follows concentration gradients. Conductive matter evolves like a growing organism trying to maximize food extraction (heat) in a closed space (heating pad). 
 ![Step2](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP2.png)
 
-# Step 3: convergence
+## Step 3: convergence
 The shape ceases to evolve once thermal gradients are equalized around conductive matter. The solution is not optimal as no objective function is minimized but the topology evolved is an efficient local minima and most of all: it converges very fast ! It can outperform most of the other methods based on pure mathematics to attack the problem. It is however an average performer compared to other evolutionnaty algorithms (both gradient based or global).
 ![Step3](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/STEP3.png)
 
-# Code output during calculation
+## Code output during calculation
 Science must be fancy so the code outputs cool figures while converging. As the problem is mainly symmetrical, only half geometries are considered for calculations. Everything is in French.
 ![output](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/Code_Output.png)
 
-# Exemple of shape at convergence with a 800x800 square elements topology, filling ratio=30% and kp/k0=20
+## Exemple of shape at convergence (I know, this is fascinating)
 ![convergence](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/Converged_shape.png)
 
-# Epilogue and funfacts
+## Epilogue and funfacts
 
 This code and some of my following papers have more or less killed the [constructal theory](https://en.wikipedia.org/wiki/Adrian_Bejan#Constructal_law). As killing bullshit theories is my favorite activity, I consider the job as more or less done on this point. The author of the now forgotten constructal theory first tried to prevent my papers to be published and then tried to integrate my results as own part of its theory. This particular algorithm was also attacked for plagiarism without any success and the strikers went crying as soon as I took out my lab notebook with proof of anteriority. Finally, the code principle was copied (without citing me) and patented (citing me !) by a noticeable number of assholes publishing in countries were deontology seems to be a joke. 
 
