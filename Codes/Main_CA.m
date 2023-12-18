@@ -3,7 +3,7 @@
 clear;
 clc;
 
-kp=200;%kp/ko ratio
+kp=10;%kp/ko ratio
 phi=0.3;%filling ratio
 obj=0.05;%gradient/temperature ratio for attraction 0=100% gradient, 1=100%temperature 
 
