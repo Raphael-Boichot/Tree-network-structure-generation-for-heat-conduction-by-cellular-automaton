@@ -3,8 +3,12 @@
 clear;
 clc;
 
-kp=[100];%kp/ko ratio
-phi=[0.3];%filling ratio
+kp=200;%kp/ko ratio
+phi=0.3;%filling ratio
+obj=0.05;%gradient/temperature ratio for attraction 0=100% gradient, 1=100%temperature 
 
-[a]=automate_cell_direct(kp,phi,'100x200.bmp');
+mkdir('Figure');
+mkdir('Topology');
+
+[a]=automate_cell_direct(obj,kp,phi,'200x400.bmp');
 

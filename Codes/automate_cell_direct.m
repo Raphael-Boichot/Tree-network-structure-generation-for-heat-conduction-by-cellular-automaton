@@ -1,5 +1,5 @@
 
-function t_max_final = automate_cell_direct(cond_haute,taux_remplissage,start_image)
+function t_max_final = automate_cell_direct(obj,cond_haute,taux_remplissage,start_image)
 rng('shuffle', 'twister')
 %*****************Automate cellulaire*********************INPG/BOICHOT/2008
 %****Conductivité des drains thermiques W/m.K******************************
@@ -94,16 +94,8 @@ for m=1:1:nombre_images*1.2;
     temp_min = min(min(temp));
     gradients=(gradients-grad_min)/(grad_max-grad_min);
     temp=(temp-temp_min)/(temp_max-temp_min);
-    %
-    % parfor objvar=1:1:21;
-    % [somme_entropie, entropie, border_variance,variance, moyenne_temp,t_max(objvar),temp_temp,grad, variance_grad]=finite_temp_direct_sparse(cond_haute,cond_basse,temp_puits,pas_x,p_vol,Cellular_automaton(condi_limites,gradients*(1-(objvar-1)/20)+temp*((objvar-1)/20), cond_haute,cond_basse,nombre_pixels_conducteurs,taux_variac,nombre_images,m));
-    % end
-    %
-    % [val,index]=min(t_max);
-    % index_de_m(m)=index;
-    % obj= (index-1)/20;
-    % note = gradients*(1-obj)+temp*(obj);
-    note=gradients;
+
+    note=gradients*(1-obj)+temp*(obj);
     [condi_limites] = cellular_automaton(condi_limites,note, cond_haute,cond_basse,nombre_pixels_conducteurs,taux_variac,nombre_images,m);
     disp('Calculating the temperature map...');
     [somme_entropie, entropie, border_variance,variance, moyenne_temp,t_max,temp,grad, variance_grad]=finite_temp_direct_sparse(cond_haute,cond_basse,temp_puits,pas_x,p_vol,condi_limites);
@@ -146,11 +138,12 @@ for m=1:1:nombre_images*1.2;
     condi_limites_2=uint8(condi_limites_2);
     
     % nom_sortie = ['sortie',num2str(m),'.bmp'];
-    nom_sortie =['sortie_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'.png'];
     miroir=fliplr(condi_limites_2(1:hauteur,1:largeur-1,:));
     miroir2=fliplr(miroir);
-    imwrite([miroir2,miroir],nom_sortie);
+    imwrite([miroir2,miroir],['sortie_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'.png']);
+    imwrite([miroir2,miroir],['Topology/sortie_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'_',num2str(m,'%06.f'),'.png']);
     figure(1)
+    colormap jet
     subplot(2,4,1:2);
     
     if m>1;
@@ -166,30 +159,28 @@ for m=1:1:nombre_images*1.2;
     subplot(2,4,5);
     plot(variance,'.m');
     imagesc(log10(entropie(2:end-1,2:end-1)));
-    colormap hot
     title('Log10 Entropy');
     
     subplot(2,4,6);
     imagesc(temp);
-    colormap hot
     title('Temperature');
     
     subplot(2,4,7);
-    imagesc(gradients);
-    colormap hot
-    title('Thermal gradients');
+    imagesc(log10(gradients));
+    title('Log10 Thermal gradients');
     
     subplot(2,4,8);
-    imagesc(note);
-    title('Objective function');
-    colormap hot
+    imagesc(log10(note));
+    title('Log10 Objective function');
     
     disp(['Maximum temperature: ',num2str(t_max_sortie(m))])
+    disp(['End of epoch: ',num2str(m)])
     disp(['-------------------------------------------------------'])
     
-    condi_limites_1=condi_limites_2;
+    %condi_limites_1=condi_limites_2;
     %saveas(gcf,['Z_figure_', num2str(m)],'png');
     saveas(gcf,['figure_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'.png']);
+    saveas(gcf,['Figure/figure_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'_',num2str(m,'%06.f'),'.png']);
     toc
     
     % figure(2)
