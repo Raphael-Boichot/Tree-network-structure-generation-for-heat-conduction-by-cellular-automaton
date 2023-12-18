@@ -75,13 +75,12 @@ affichage=zeros(1,4);
 
 %disp('entrée des conditions initiales terminée.............................');
 
-for m=1:1:nombre_images*1.2;
+for m=1:1:nombre_images;
     tic
-    
+    disp(['-------------------------------------------------------'])
     disp('Applying the Cellular Automaton...');
     
     %************************************************************Début de l'automate cellulaire
-    
     
     %boucle interne
     %************Calcul de temp_max, temp_min, grad_max,grad_min*****
@@ -148,7 +147,7 @@ for m=1:1:nombre_images*1.2;
     
     if m>1;
         res(m-1)=(t_max_sortie(m-1)-t_max_sortie(m))/(t_max_sortie(1)-t_max_sortie(2));
-        semilogy(res,'.r');
+        semilogy(abs(res),'.r');
         title('Residuals');
     end
     
@@ -177,8 +176,6 @@ for m=1:1:nombre_images*1.2;
     disp(['End of epoch: ',num2str(m)])
     disp(['-------------------------------------------------------'])
     
-    %condi_limites_1=condi_limites_2;
-    %saveas(gcf,['Z_figure_', num2str(m)],'png');
     saveas(gcf,['figure_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'.png']);
     saveas(gcf,['Figure/figure_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'_',num2str(m,'%06.f'),'.png']);
     toc
