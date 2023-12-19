@@ -139,7 +139,7 @@ for m=1:1:nombre_images;
     % nom_sortie = ['sortie',num2str(m),'.bmp'];
     miroir=fliplr(condi_limites_2(1:hauteur,1:largeur-1,:));
     miroir2=fliplr(miroir);
-    imwrite([miroir2,miroir],['sortie_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'.png']);
+    imwrite([miroir2,miroir],['Output_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'.png']);
     imwrite([miroir2,miroir],['Topology/sortie_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'_',num2str(m,'%06.f'),'.png']);
     figure(1)
     colormap jet
@@ -176,7 +176,7 @@ for m=1:1:nombre_images;
     disp(['End of epoch: ',num2str(m)])
     disp(['-------------------------------------------------------'])
     
-    saveas(gcf,['figure_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'.png']);
+    saveas(gcf,['Figure_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'.png']);
     saveas(gcf,['Figure/figure_kp_ko_',num2str(cond_haute),'_phi_',num2str(taux_remplissage),'_',num2str(m,'%06.f'),'.png']);
     toc
     
