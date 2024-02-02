@@ -25,12 +25,12 @@ The shape ceases to evolve once thermal gradients are equalized around conductiv
 Science must be fancy so the code outputs cool figures while converging. As the problem is mainly symmetrical, only half geometries are considered for calculations.
 ![output](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/Code_Output.png)
 
-## Exemple of convergence path for kp/k0= 10 and filling ratio = 0.3 (10 setps per frame)
+## Exemple of convergence path for kp/k0= 10 and filling ratio = 0.3 (10 steps per frame)
 ![convergence](Pictures/CA_Output.gif)
 
 ## Epilogue and funfacts
 
-This code and some of my following papers have more or less killed the [constructal theory](https://en.wikipedia.org/wiki/Adrian_Bejan#Constructal_law) which was very famous in the early 2000s as a "theory of everything" in engineering. As killing bullshit theories is my favorite activity, I consider the job as more or less done on this point. The author of the now forgotten constructal theory first tried to prevent my papers to be published and then tried to claim my results to be own part of his theory. This particular algorithm was also attacked for plagiarism without any success and the strikers went crying as soon as I took out my lab notebook with proof of anteriority. Finally, the code principle was copied (without citing me) and patented (citing me, yes this is particularly stupid as it renders the patent immediately obsolete !) by a noticeable number of assholes publishing in countries from all around the world were deontology seems to be a joke. 
+This code and some of my following papers have more or less killed the [constructal theory](https://en.wikipedia.org/wiki/Adrian_Bejan#Constructal_law) which was very famous in the early 2000s as a "theory of everything" in engineering. As killing bullshit theories is my favorite activity, I consider the job as more or less done on this point. The author of the now forgotten constructal theory first tried to prevent my papers to be published and then tried to claim my results to be own part of his theory. This particular algorithm was also attacked for plagiarism without any success and the strikers went crying as soon as I took out my lab notebook with proof of anteriority. Finally, the code principle was copied (without citing me) and patented (citing me, yes this is particularly stupid as it renders the patent immediately obsolete !) by a noticeable number of assholes publishing in countries from all around the world were respecting deontology seems to be elective. 
 
 I had clearly imagined a more peaceful begining of scientific career but hey, plagiarism is just a form of flattery after all...
 That said, enjoy the code !
