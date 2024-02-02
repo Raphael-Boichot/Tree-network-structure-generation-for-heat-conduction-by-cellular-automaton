@@ -27,7 +27,6 @@ new_pos2=zeros(hauteur,largeur);
                     if (condi_limites(k, l + 1) == cond_haute) && (condi_limites(k + 1, l + 1) == cond_haute) ; anti_warning = anti_warning + 1; end
                 
                     if (anti_warning >= 1); new_pos_out(k, l) = note(k, l); end
-                    
 %*****************enlève les cases isolées en priorité********************************************
                     if (anti_warning == 8); new_pos_out(k, l) = note(k, l) * 1000; end
                                         

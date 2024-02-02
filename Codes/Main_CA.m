@@ -11,4 +11,4 @@ obj=0;%gradient/temperature ratio for attraction 0=100% gradient, 1=100%temperat
 mkdir('Figure');
 mkdir('Topology');
 figure('Position',[100 100 800 800]);
-[a]=automate_cell_direct(obj,kp_k0,phi,'100x200.bmp');
+[a]=automate_cell_direct(obj,kp_k0,phi,'200x400.bmp');
