@@ -1,4 +1,4 @@
-# Tree network structure generation for heat conduction by Cellular Automaton
+## Tree network structure generation for heat conduction by Cellular Automaton
 
 This repo contains the codes used in the following paper entitled:
 [Tree-network structure generation for heat conduction by cellular automaton, by R. Boichot, L. Luo, Y. Fan - Energy Conversion and Management, 2009](https://doi.org/10.1016/j.enconman.2008.09.003)
