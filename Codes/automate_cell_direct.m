@@ -1,10 +1,10 @@
-function t_max_final = automate_cell_direct(temp_grad_ratio,kp_k0,filling_ratio,heat_sink_temperature,step_x,p_vol,variation_rate,start_image)
+function t_max_final = automate_cell_direct(temp_grad_ratio,kp_k0,filling_ratio,heat_sink_temperature,step_x,p_vol,variation_rate,start_image,verbose)
 rng('shuffle', 'twister')
 %*****************Automate cellulaire*********************INPG/BOICHOT/2008
 
 %get the image pixels as boudary conditions
 initial_boundary_conditions=imread(start_image);
-disp('Reading bitmap image...')
+disp(['Launching case with temperature to gradient attraction = ',num2str(temp_grad_ratio)]);
 [height,width,~]=size(initial_boundary_conditions);
 number_of_epoch = max([height,width]);
 boundary_conditions = zeros(height,width);
@@ -33,9 +33,12 @@ while k<conductive_cells
 end
 
 %save the intial configuration
-mirror=fliplr(initial_boundary_conditions(1:height,1:width-1,:));
-mirror2=fliplr(mirror);
-imwrite([mirror2,mirror],['Topology/sortie_kp_ko_',num2str(kp_k0),'_phi_',num2str(filling_ratio),'_',num2str(0,'%06.f'),'.png']);
+if verbose==1
+    figure('Position',[100 100 800 800]);
+    mirror=fliplr(initial_boundary_conditions(1:height,1:width-1,:));
+    mirror2=fliplr(mirror);
+    imwrite([mirror2,mirror],['Topology/sortie_kp_ko_',num2str(kp_k0),'_phi_',num2str(filling_ratio),'_',num2str(0,'%06.f'),'.png']);
+end
 
 %Third pass: congreen image into boundary conditions
 non_conductive_cells=0;
@@ -63,22 +66,17 @@ for k = 1:1:height
     end
 end
 
-disp('Converting bitmap image to surface conditions...');
-%****Pré-allocation de la taille des matrices utilisées dans les boucles***
 temp=ones(height,width).*heat_sink_temperature;
 boundary_conditions_to_pixels=initial_boundary_conditions;
 t_max_sortie=zeros(number_of_epoch);
 res=zeros(number_of_epoch);
-%disp('entrée des conditions initiales terminée.............................');
 
 for m=1:1:number_of_epoch
     tic
-    disp('-------------------------------------------------------')
-    disp('Applying the Cellular Automaton...');
-    %************************************************************Début de l'automate cellulaire
-
-    %boucle interne
-    %************Calcul de temp_max, temp_min, grad_max,grad_min*****
+    if verbose==1
+        disp('-------------------------------------------------------')
+        disp('Applying the Cellular Automaton...');
+    end
     [~,~,~,~,~,~,t_max_sortie(m),temp,grad,~]=finite_temp_direct_sparse(kp_k0,1,heat_sink_temperature,step_x,p_vol,boundary_conditions);
     gradients=zeros(height,width);
     gradients(2:height-1,2:width-1)=grad;
@@ -90,7 +88,6 @@ for m=1:1:number_of_epoch
     temp=(temp-temp_min)/(temp_max-temp_min);
     note=gradients*(1-temp_grad_ratio)+temp*(temp_grad_ratio);
     [boundary_conditions] = cellular_automaton(boundary_conditions,note, kp_k0,1,conductive_cells,variation_rate,number_of_epoch,m);
-    disp('Calculating the temperature map...');
     % Variables output in this order :
     % 1. Distance of the hotest cell to the heat sink (scalar)
     % 2. Sum of cell entropy (scalar)
@@ -103,82 +100,80 @@ for m=1:1:number_of_epoch
     % 9. map of thermal gradients (matrix)
     % 10. Variance of gradients across the 2D domain (scalar)
     [~,~,entropy_map,~,variance,~,~,temp,~,~]=finite_temp_direct_sparse(kp_k0,1,heat_sink_temperature,step_x,p_vol,boundary_conditions);
-    %****créé une image de sortie compatible avec l'image d'entrée*************
-    for k = 1:1:height
-        for l = 1:1:width
-            choice = boundary_conditions(k, l) ;
-            if choice == 1
-                red = 255;
-                green = 255;
-                blue = 255;
+    if verbose==1
+        for k = 1:1:height
+            for l = 1:1:width
+                choice = boundary_conditions(k, l) ;
+                if choice == 1
+                    red = 255;
+                    green = 255;
+                    blue = 255;
+                end
+                if choice == -2
+                    red = 127;
+                    green = 127 ;
+                    blue = 127 ;
+                end
+                if choice == -3
+                    red = 0;
+                    green = 0 ;
+                    blue = 255;
+                end
+                if choice == kp_k0
+                    red = 0 ;
+                    green = 0 ;
+                    blue = 0;
+                end
+                boundary_conditions_to_pixels(k,l,1)=red;
+                boundary_conditions_to_pixels(k,l,2)=green;
+                boundary_conditions_to_pixels(k,l,3)=blue;
             end
-            if choice == -2
-                red = 127;
-                green = 127 ;
-                blue = 127 ;
-            end
-            if choice == -3
-                red = 0;
-                green = 0 ;
-                blue = 255;
-            end
-            if choice == kp_k0
-                red = 0 ;
-                green = 0 ;
-                blue = 0;
-            end
-            boundary_conditions_to_pixels(k,l,1)=red;
-            boundary_conditions_to_pixels(k,l,2)=green;
-            boundary_conditions_to_pixels(k,l,3)=blue;
         end
+        
+        boundary_conditions_to_pixels=uint8(boundary_conditions_to_pixels);
+        mirror=fliplr(boundary_conditions_to_pixels(1:height,1:width-1,:));
+        mirror2=fliplr(mirror);
+        imwrite([mirror2,mirror],['Output_kp_ko_',num2str(kp_k0),'_phi_',num2str(filling_ratio),'.png']);
+        imwrite([mirror2,mirror],['Topology/sortie_kp_ko_',num2str(kp_k0),'_phi_',num2str(filling_ratio),'_',num2str(m,'%06.f'),'.png']);
+        figure(1)
+        colormap jet
+        subplot(2,4,1:2);
+        
+        if m>1
+            res(m-1)=(t_max_sortie(m-1)-t_max_sortie(m))/(t_max_sortie(1)-t_max_sortie(2));
+            semilogy(abs(res(1:m)),'.r');
+            title('Residuals');
+        end
+        
+        subplot(2,4,3:4);
+        imagesc([mirror2,mirror]);
+        title('Topology');
+        
+        subplot(2,4,5);
+        plot(variance,'.m');
+        imagesc(log10(entropy_map(2:end-1,2:end-1)));
+        title('Log10 Entropy');
+        
+        subplot(2,4,6);
+        imagesc(temp);
+        title('Temperature');
+        
+        subplot(2,4,7);
+        imagesc(log10(gradients));
+        title('Log10 Thermal gradients');
+        
+        subplot(2,4,8);
+        imagesc(log10(note));
+        title('Log10 attraction function');
+        
+        disp(['Maximum temperature: ',num2str(t_max_sortie(m))])
+        disp(['End of epoch: ',num2str(m)])
+        disp('-------------------------------------------------------')
+        
+        saveas(gcf,['Figure_kp_ko_',num2str(kp_k0),'_phi_',num2str(filling_ratio),'.png']);
+        saveas(gcf,['Figure/figure_kp_ko_',num2str(kp_k0),'_phi_',num2str(filling_ratio),'_',num2str(m,'%06.f'),'.png']);
+        toc
     end
-
-    boundary_conditions_to_pixels=uint8(boundary_conditions_to_pixels);
-    mirror=fliplr(boundary_conditions_to_pixels(1:height,1:width-1,:));
-    mirror2=fliplr(mirror);
-    imwrite([mirror2,mirror],['Output_kp_ko_',num2str(kp_k0),'_phi_',num2str(filling_ratio),'.png']);
-    imwrite([mirror2,mirror],['Topology/sortie_kp_ko_',num2str(kp_k0),'_phi_',num2str(filling_ratio),'_',num2str(m,'%06.f'),'.png']);
-    figure(1)
-    colormap jet
-    subplot(2,4,1:2);
-
-    if m>1
-        res(m-1)=(t_max_sortie(m-1)-t_max_sortie(m))/(t_max_sortie(1)-t_max_sortie(2));
-        semilogy(abs(res(1:m)),'.r');
-        title('Residuals');
-    end
-
-    subplot(2,4,3:4);
-    imagesc([mirror2,mirror]);
-    title('Topology');
-
-    subplot(2,4,5);
-    plot(variance,'.m');
-    imagesc(log10(entropy_map(2:end-1,2:end-1)));
-    title('Log10 Entropy');
-
-    subplot(2,4,6);
-    imagesc(temp);
-    title('Temperature');
-
-    subplot(2,4,7);
-    imagesc(log10(gradients));
-    title('Log10 Thermal gradients');
-
-    subplot(2,4,8);
-    imagesc(log10(note));
-    title('Log10 attraction function');
-
-    disp(['Maximum temperature: ',num2str(t_max_sortie(m))])
-    disp(['End of epoch: ',num2str(m)])
-    disp('-------------------------------------------------------')
-
-    saveas(gcf,['Figure_kp_ko_',num2str(kp_k0),'_phi_',num2str(filling_ratio),'.png']);
-    saveas(gcf,['Figure/figure_kp_ko_',num2str(kp_k0),'_phi_',num2str(filling_ratio),'_',num2str(m,'%06.f'),'.png']);
-    toc
-
-    % figure(2)
-    % plot(index_de_m,'bd');
 end
 t_max_final=max(max(temp));
-disp('End of convergence !');
+disp(['Convergence of case with temperature to gradient attraction = ',num2str(temp_grad_ratio)]);
