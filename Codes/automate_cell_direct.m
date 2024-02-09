@@ -160,7 +160,7 @@ for m=1:1:number_of_epoch
         
         subplot(2,4,7);
         imagesc(log10(gradients));
-        title('Log10 Thermal gradients');
+        title('Log10 thermal gradients');
         
         subplot(2,4,8);
         imagesc(log10(note));
