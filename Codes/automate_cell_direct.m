@@ -3,9 +3,9 @@ rng('shuffle', 'twister')
 %*****************Automate cellulaire*********************INPG/BOICHOT/2008
 
 %get the image pixels as boudary conditions
-initial_boudary_conditions=imread(start_image);
+initial_boundary_conditions=imread(start_image);
 disp('Reading bitmap image...')
-[height,width,~]=size(initial_boudary_conditions);
+[height,width,~]=size(initial_boundary_conditions);
 number_of_epoch = max([height,width]);
 boundary_conditions = zeros(height,width);
 
@@ -13,7 +13,7 @@ boundary_conditions = zeros(height,width);
 non_conductive_cells=0;
 for k = 1:1:height
     for l = 1:1:width
-        vec = initial_boudary_conditions(k,l,:);
+        vec = initial_boundary_conditions(k,l,:);
         if vec==[255 255 255]
             non_conductive_cells=non_conductive_cells+1;
         end
@@ -26,14 +26,14 @@ k=0;
 while k<conductive_cells
     h=ceil(rand*height);
     l=ceil(rand*width);
-    if initial_boudary_conditions(h,l,:)==[255 255 255]
-        initial_boudary_conditions(h,l,:)=[0 0 0];
+    if initial_boundary_conditions(h,l,:)==[255 255 255]
+        initial_boundary_conditions(h,l,:)=[0 0 0];
         k=k+1;
     end
 end
 
 %save the intial configuration
-mirror=fliplr(initial_boudary_conditions(1:height,1:width-1,:));
+mirror=fliplr(initial_boundary_conditions(1:height,1:width-1,:));
 mirror2=fliplr(mirror);
 imwrite([mirror2,mirror],['Topology/sortie_kp_ko_',num2str(kp_k0),'_phi_',num2str(filling_ratio),'_',num2str(0,'%06.f'),'.png']);
 
@@ -42,9 +42,9 @@ non_conductive_cells=0;
 black_pixels=0;
 for k = 1:1:height
     for l = 1:1:width
-        red = initial_boudary_conditions(k,l,1);
-        green = initial_boudary_conditions(k,l,2);
-        blue = initial_boudary_conditions(k,l,3);
+        red = initial_boundary_conditions(k,l,1);
+        green = initial_boundary_conditions(k,l,2);
+        blue = initial_boundary_conditions(k,l,3);
         if (red == 255) && (green == 255) && (blue == 255)
             choice = 1;%by default k0=1, change value here if necessary
             non_conductive_cells=non_conductive_cells+1;
@@ -66,7 +66,7 @@ end
 disp('Converting bitmap image to surface conditions...');
 %****Pré-allocation de la taille des matrices utilisées dans les boucles***
 temp=ones(height,width).*heat_sink_temperature;
-boundary_conditions_to_pixels=initial_boudary_conditions;
+boundary_conditions_to_pixels=initial_boundary_conditions;
 t_max_sortie=zeros(number_of_epoch);
 res=zeros(number_of_epoch);
 %disp('entrée des conditions initiales terminée.............................');
