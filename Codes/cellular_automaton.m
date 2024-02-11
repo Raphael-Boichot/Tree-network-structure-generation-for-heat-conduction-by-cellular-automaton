@@ -1,3 +1,5 @@
+%https://doi.org/10.1016/j.enconman.2008.09.003
+%https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton
 function [boudary_conditions] = cellular_automaton(boudary_conditions,temp_grad_ratio, kp_k0,k0,conductive_cells,variation_rate,number_of_epoch,m)
 [height,width,~]=size(boudary_conditions);
 new_pos_out=zeros(height,width);

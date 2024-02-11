@@ -1,3 +1,5 @@
+%https://doi.org/10.1016/j.enconman.2008.09.003
+%https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton
 function t_max_final = automate_cell_direct(temp_grad_ratio,kp_k0,filling_ratio,heat_sink_temperature,step_x,p_vol,variation_rate,start_image,verbose)
 rng('shuffle', 'twister')
 %*****************Automate cellulaire*********************INPG/BOICHOT/2008
