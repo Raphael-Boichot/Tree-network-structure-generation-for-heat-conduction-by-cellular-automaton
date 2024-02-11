@@ -1,6 +1,6 @@
 %https://doi.org/10.1016/j.enconman.2008.09.003
 %https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton
-function t_max_final = automate_cell_direct(temp_grad_ratio,kp_k0,filling_ratio,heat_sink_temperature,step_x,p_vol,variation_rate,start_image,verbose)
+function t_max_final = automate_cell_direct(temp_grad_ratio,kp_k0,filling_ratio,heat_sink_temperature,delta_x,p_vol,variation_rate,start_image,verbose)
 rng('shuffle', 'twister')
 %*****************Automate cellulaire*********************INPG/BOICHOT/2008
 
@@ -79,7 +79,7 @@ for m=1:1:number_of_epoch
         disp('-------------------------------------------------------')
         disp('Applying the Cellular Automaton...');
     end
-    [~,~,~,~,~,~,t_max_sortie(m),temp,grad,~]=finite_temp_direct_sparse(kp_k0,1,heat_sink_temperature,step_x,p_vol,boundary_conditions);
+    [~,~,~,~,~,~,t_max_sortie(m),temp,grad,~]=finite_temp_direct_sparse(kp_k0,1,heat_sink_temperature,delta_x,p_vol,boundary_conditions);
     gradients=zeros(height,width);
     gradients(2:height-1,2:width-1)=grad;
     grad_max = max(max(gradients));
@@ -101,7 +101,7 @@ for m=1:1:number_of_epoch
     % 8. Map of temperatures (matrix)
     % 9. map of thermal gradients (matrix)
     % 10. Variance of gradients across the 2D domain (scalar)
-    [~,~,entropy_map,~,variance,~,~,temp,~,~]=finite_temp_direct_sparse(kp_k0,1,heat_sink_temperature,step_x,p_vol,boundary_conditions);
+    [~,~,entropy_map,~,variance,~,~,temp,~,~]=finite_temp_direct_sparse(kp_k0,1,heat_sink_temperature,delta_x,p_vol,boundary_conditions);
     if verbose==1
         for k = 1:1:height
             for l = 1:1:width
