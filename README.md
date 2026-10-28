@@ -25,8 +25,11 @@ The shape ceases to evolve once thermal gradients are equalized around conductiv
 Science must be fancy so the code outputs cool figures while converging. As the problem is mainly symmetrical, only half geometries are considered for calculations.
 ![output](https://github.com/Raphael-Boichot/Tree-network-structure-generation-for-heat-conduction-by-cellular-automaton/blob/main/Pictures/Code_Output.png)
 
-## Exemple of convergence path for kp/k0= 10 and filling ratio = 0.3 (10 steps per frame)
+## Exemple of convergence path for kp/k0= 10? filling ratio = 0.3, pure gradient rule (10 steps per frame)
 ![convergence](Pictures/CA_Output.gif)
+
+## Exemple of convergence path for kp/k0= 100, filling ratio = 0.3, mixed temperature / gradient rule (1 step per frame)
+![convergence](Pictures/CA_Output_2.gif)
 
 ## Epilogue and funfacts
 
