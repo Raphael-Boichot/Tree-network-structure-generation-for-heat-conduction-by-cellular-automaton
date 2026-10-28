@@ -11,8 +11,8 @@ clear
 target_directory='Topology/';   %source directory to process
 target_mp4_file='Topology.mp4'; %target file for mp4, keep all image
 target_gif_file='Topology.gif'; %target file for animated gif
-gif_deadtime=0.1;                       %delay is seconds between pictures for animated gifs
-gif_skip=10;                            %keep every 1 out of gif_skip image for gif
+gif_deadtime=0.04;                       %delay is seconds between pictures for animated gifs
+gif_skip=1;                             %keep every 1 out of gif_skip image for gif
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 vidfile = VideoWriter(target_mp4_file,'MPEG-4');

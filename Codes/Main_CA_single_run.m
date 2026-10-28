@@ -9,14 +9,14 @@ close all;
 %User parameters
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %---------Conditions for thermal science-----------------------------------
-kp_k0=10;                       %kp/ko ratio, k0=1 by default
+kp_k0=100;                       %kp/ko ratio, k0=1 by default
 filling_ratio=0.3;              %filling ratio
-temp_grad_ratio=0.1;            %gradient/temperature ratio for attraction 0=100% gradient, 1=100%temperature 
+temp_grad_ratio=0;            %gradient/temperature ratio for attraction 0=100% gradient, 1=100%temperature 
 heat_sink_temperature=298;      %self explanatory
 delta_x=0.001;                  %step in x/y
 p_vol=1e6;                      %surface power or volume density
-starting_image='100x200.bmp';   %self explanatory
-%---------Parameters for the cellular automaton----------------------------
+starting_image='400x800.bmp';   %self explanatory
+%---------Hyper parameters for the cellular automaton----------------------------
 variation_rate=0.5;             %initial automaton variation rate, decreasing with epoch
 verbose=1;                      %to suppress output other than final T max
 %--------------------------------------------------------------------------
